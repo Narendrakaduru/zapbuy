@@ -70,3 +70,69 @@ ZapBuy follows a **modular microservices-style structure**:
 ```bash
 git clone https://github.com/Narendrakaduru/zapbuy.git
 cd zapbuy
+```
+
+### 2. Create .env files
+
+Create an **.env** in the **zapbuy-backend/** folder:
+
+```bash
+MONGODB_URI=mongodb://localhost:27017/zapbuy
+PORT=8000
+BASE_URL=http://localhost:8000
+JWT_SECRET=*************
+EMAIL_USER=*************
+EMAIL_PASS=*************
+CLIENT_URL=http://localhost:4200
+NODE_ENV=production
+```
+
+## 🖥 Running the App
+
+### Option 1 — Using Docker (recommended)
+
+```bash
+docker-compose up --build
+```
+- **Backend: http://localhost:8000**
+- **Frontend: http://localhost:4200**
+
+### Option 2 — Manual Run
+
+Backend
+
+```bash
+cd zapbuy-backend
+npm install
+npm start
+```
+
+Frontend
+
+```bash
+cd zapbuy-frontend
+npm install
+ng serve
+```
+
+## 📂 Folder Structure
+
+```bash
+zapbuy/
+├── docker-compose.yml
+├── zapbuy-backend/
+│   ├── src/
+│   │   ├── modules/        # User, Product, Cart, Order modules
+│   │   ├── config/         # App configs
+│   │   ├── middlewares/    # Auth, logging, error handling
+│   │   └── utils/
+│   └── package.json
+└── zapbuy-frontend/
+    ├── src/
+    │   ├── app/
+    │   │   ├── components/
+    │   │   ├── services/
+    │   │   └── pages/
+    │   └── assets/
+    └── package.json
+```
