@@ -1,0 +1,57 @@
+<div class="container-fluid user-wrapper">
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchQuery" 
+      class="search-input" 
+      placeholder="Search by name..." 
+    />
+    <button (click)="filterUsers()" class="search-btn">
+      <i class="bi bi-search me-1"></i> Search
+    </button>
+    <button (click)="resetSearch()" class="reset-btn">
+      <i class="bi bi-arrow-counterclockwise me-1"></i> Reset
+    </button>
+  </div>
+
+  <!-- User List -->
+  <div class="user-table container mt-4">
+    <h3 class="table-title">All Users</h3>
+
+    <div *ngIf="loading" class="text-warning">Loading users...</div>
+    <div *ngIf="error" class="text-danger">{{ error }}</div>
+
+    <table *ngIf="users.length > 0" class="table custom-table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Created</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of filteredUsers">
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.createdAt | date: 'short' }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button class="btn btn-sm btn-outline-warning" (click)="editUser(user._id)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user._id)">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && users.length === 0" class="text-center text-white">You do not have access to this.</div>
+  </div>
+</div>

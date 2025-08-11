@@ -1,0 +1,207 @@
+.product-wrapper {
+  background: linear-gradient(135deg, #232526, #414345);
+  color: #f8f9fa;
+}
+
+/* === Search Container === */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  border-radius: 50px;
+}
+
+/* Search Input */
+.search-input {
+  padding: 12px 18px;
+  width: 280px;
+  border: 2px solid #ffc107;
+  border-radius: 50px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #bfa64a;
+}
+
+.search-input:focus {
+  border-color: #e0ac00;
+  box-shadow: 0 0 8px #e0ac00aa;
+}
+
+/* Search and Reset Buttons */
+.search-btn, .reset-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  user-select: none;
+}
+
+/* Search Button Gold */
+.search-btn {
+  background: linear-gradient(135deg, #ffc107, #ffdd57);
+  color: #222;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.6);
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #ffdd57, #ffc107);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.9);
+}
+
+/* Reset Button Soft Gray */
+.reset-btn {
+  background: #f0f0f0;
+  color: #666;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.reset-btn:hover {
+  background: #e5e5e5;
+  box-shadow: 0 0 10px #ccc;
+}
+
+/* === Product List Wrapper === */
+.product-list {
+  padding: 0 10px 40px;
+  border-radius: 1rem;
+}
+
+/* === Product Card === */
+.product-card {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff8e1;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgb(255 193 7 / 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgb(255 193 7 / 0.3);
+}
+
+/* Product Image */
+.product-image img {
+  border-radius: 12px;
+  max-width: 140px;
+  max-height: 140px;
+  object-fit: cover;
+  box-shadow: 0 3px 10px rgb(255 193 7 / 0.25);
+}
+
+/* Product Info */
+.product-info {
+  flex-grow: 1;
+  margin-left: 25px;
+  color: #4a4a4a;
+}
+
+.product-info h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #b28704; /* dark gold */
+  margin-bottom: 6px;
+}
+
+.product-info p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #6a6a6a;
+  user-select: none;
+}
+
+/* === Action Buttons === */
+.icon-btn {
+  background: none;
+  border: 2px solid transparent;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+
+.icon-btn.edit {
+  color: #b28704;
+  border-color: #b28704;
+}
+
+.icon-btn.edit:hover {
+  background: #fff3c4;
+  border-color: #e0ac00;
+}
+
+.icon-btn.delete {
+  color: #e5484d;
+  border-color: #e5484d;
+}
+
+.icon-btn.delete:hover {
+  background: #ffdadc;
+  border-color: #d1353b;
+}
+
+/* === Pagination === */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.pagination button,
+.pagination span {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f9f5e7;
+  color: #7a6b00;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+  user-select: none;
+  box-shadow: 0 2px 5px rgb(255 193 7 / 0.25);
+}
+
+.pagination span.active {
+  background-color: #ffc107;
+  color: #3b2f00;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgb(255 193 7 / 0.6);
+}
+
+.pagination button:disabled {
+  background-color: #f0e6b3;
+  color: #c3b25b;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination button:hover:not(:disabled),
+.pagination span:hover:not(.active) {
+  background-color: #fff3a2;
+  box-shadow: 0 4px 14px rgb(255 193 7 / 0.5);
+}

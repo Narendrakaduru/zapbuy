@@ -1,0 +1,37 @@
+<div class="cart-item container-fluid py-3 border-bottom">
+  <div class="row align-items-center">
+
+    <!-- Product Details Column -->
+    <div class="col-md-7 px-0 d-flex align-items-center">
+      <img
+        *ngIf="item.product?.images?.[0]"
+        [src]="item.product.images[0]"
+        alt="Product Image"
+        class="product-image me-3 shadow-sm"
+      />
+      <div class="info">
+        <h5 class="product-name mb-1">{{ item.product.name }}</h5>
+        <p class="product-price mb-0">₹{{ getDiscountedPrice(item) }}</p>
+      </div>
+    </div>
+
+    <!-- Actions Column -->
+    <div class="col-md-5 px-0 cart-actions d-flex justify-content-end align-items-center flex-wrap">
+      <div class="quantity-control d-flex align-items-center me-3 py-2">
+        <button class="qty-btn minus" (click)="onQuantityChange(item, item.quantity - 1)">−</button>
+        <input
+          type="number"
+          [value]="item.quantity"
+          min="1"
+          class="quantity-input text-center mx-1"
+          (change)="onQuantityChange(item, $event)"
+        />
+        <button class="qty-btn plus" (click)="onQuantityChange(item, item.quantity + 1)">+</button>
+      </div>
+      <button class="remove-btn" (click)="removeItem()">
+        <i class="bi bi-trash3"></i>
+      </button>
+    </div>
+
+  </div>
+</div>

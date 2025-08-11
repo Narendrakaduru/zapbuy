@@ -1,0 +1,71 @@
+<div class="product-wrapper">
+    <div class="container product-detail-container" *ngIf="product">
+    <div class="row product-main-row">
+        <!-- Left: Image + thumbnails -->
+        <div class="product-images col-md-4">
+            <div class="main-image">
+                <img [src]="mainImage" alt="{{ product.name }}" />
+            </div>
+
+            <div class="thumbnails-row">
+                <img *ngFor="let img of product.images" [src]="img" (click)="changeImage(img)"
+                    [class.active]="mainImage === img" alt="{{ product.name }}" class="thumbnail-img" />
+            </div>
+        </div>
+
+        <!-- Right: Product details -->
+        <div class="product-info col-md-8">
+            <div class="category">{{ product.category | uppercase }}</div>
+            <h2 class="product-title">{{ product.name }}</h2>
+
+            <div class="price-area">
+                <p class="old-price" *ngIf="product.discount > 0">
+                    <del>₹{{ product.price }}</del>
+                    <span class="discount">-{{ product.discount }}%</span>
+                </p>
+                <p class="new-price">₹{{ product.price * (1 - product.discount / 100) | number:'1.0-0' }}</p>
+            </div>
+            <h4>PRODUCT DETSILS</h4>
+            <p class="description">{{ product.description }}</p>
+            <p><strong>Stock:</strong> {{ product.stock }}</p>
+
+            <div class="action-buttons">
+                <button class="btn btn-warning" [disabled]="product.stock === 0" (click)="addToCart(product)">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+                <button class="btn btn-outline-secondary">Buy Now</button>
+            </div>
+
+            <div class="likes">
+                <i class="bi bi-heart-fill"></i> <span>{{ product.likes.length }} Likes</span>
+            </div>
+
+            <!-- Add Comment -->
+            <div class="add-comment mb-5">
+                <h6>Add Your Review</h6>
+                <textarea rows="3" [(ngModel)]="newComment" placeholder="Write your comment here..."></textarea>
+                <button class="btn btn-primary" (click)="submitComment()"
+                    [disabled]="!newComment.trim()">Submit</button>
+            </div>
+
+            <!-- Comments -->
+            <div class="comments-section">
+                <h5>Customer Reviews</h5>
+                <div *ngFor="let c of product.comments" class="comment-box">
+                    <p><strong>User:</strong> {{ c.user ? (c.user.firstName + ' ' + c.user.lastName) : 'Unknown User' }}
+                    </p>
+                    <p>{{ c.comment }}</p>
+                    <small>{{ c.createdAt | date:'medium' }}</small>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="!product" class="loading-spinner">
+    <div class="spinner"></div>
+</div>

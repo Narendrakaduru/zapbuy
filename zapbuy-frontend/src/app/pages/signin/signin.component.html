@@ -1,0 +1,43 @@
+<div class="product-form-wrapper">
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="product-form-card">
+    
+    <h2 class="form-title">Sign In</h2>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        placeholder="Enter your email"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+        placeholder="Enter your password"
+      />
+    </div>
+
+    <!-- Forgot password -->
+    <div class="form-group text-end">
+      <a routerLink="/forgot-password" class="text-decoration-none" style="color:#ffc107;">
+        Forgot Password?
+      </a>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn-submit" [disabled]="signinForm.invalid">
+      Sign In
+    </button>
+
+  </form>
+</div>

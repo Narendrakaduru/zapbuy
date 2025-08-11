@@ -1,0 +1,75 @@
+<div class="product-form-wrapper">
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="product-form-card">
+
+    <h2 class="form-title">Update User</h2>
+
+    <!-- First Name -->
+    <div class="form-group">
+      <label class="form-label">First Name</label>
+      <input 
+        type="text" 
+        formControlName="firstName" 
+        class="form-control" 
+        placeholder="e.g. John"
+        [class.is-invalid]="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched" />
+      <div class="invalid-feedback" *ngIf="userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched">
+        {{ getErrorMessage('firstName') }}
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-group">
+      <label class="form-label">Last Name</label>
+      <input 
+        type="text" 
+        formControlName="lastName" 
+        class="form-control" 
+        placeholder="e.g. Doe"
+        [class.is-invalid]="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched" />
+      <div class="invalid-feedback" *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+        {{ getErrorMessage('lastName') }}
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input 
+        type="email" 
+        formControlName="email" 
+        class="form-control" 
+        placeholder="e.g. john.doe@example.com"
+        [class.is-invalid]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
+      <div class="invalid-feedback" *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <label class="form-label">Role</label>
+      <ng-select
+        [items]="roles"
+        [searchable]="true"
+        [clearable]="false"
+        formControlName="role"
+        class="custom-ng-select"
+        placeholder="Select user role">
+      </ng-select>
+      <div class="invalid-feedback d-block" *ngIf="userForm.get('role')?.invalid && userForm.get('role')?.touched">
+        Role is required
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button 
+        class="btn-submit" 
+        type="submit" 
+        [disabled]="!userForm.valid">
+        Update User
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,144 @@
+<div class="container-fluid home-wrapper py-4">
+  <div class="row g-4">
+
+    <!-- Filter Sidebar -->
+    <aside class="col-md-3">
+      <div class="filter-sidebar shadow-sm p-3 rounded">
+        <h5 class="filter-title mb-3">
+          <i class="bi bi-funnel-fill"></i> Filters
+        </h5>
+
+        <!-- Category -->
+        <div class="filter-block mb-4">
+          <label class="filter-label fw-semibold">Category</label>
+          <div *ngFor="let cat of categories" class="custom-check">
+            <input
+              type="checkbox"
+              [value]="cat"
+              id="cat-{{cat}}"
+              (change)="onCategoryChange($event)"
+            />
+            <label for="cat-{{cat}}">{{ cat }}</label>
+          </div>
+        </div>
+
+        <!-- Brand -->
+        <div class="filter-block mb-4">
+          <label class="filter-label fw-semibold">Brand</label>
+          <div *ngFor="let brand of brands" class="custom-check">
+            <input
+              type="checkbox"
+              [value]="brand"
+              id="brand-{{brand}}"
+              (change)="onBrandChange($event)"
+            />
+            <label for="brand-{{brand}}">{{ brand }}</label>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div class="filter-block mb-4">
+          <label class="filter-label fw-semibold">Price Range</label>
+          <select class="form-select" (change)="onPriceRangeChange($event)">
+            <option value="">All</option>
+            <option value="0-1000">Under ₹1,000</option>
+            <option value="1000-5000">₹1,000 - ₹5,000</option>
+            <option value="5000-10000">₹5,000 - ₹10,000</option>
+            <option value="10000-50000">₹10,000 - ₹50,000</option>
+            <option value="50000-100000">₹50,000 - ₹1,00,000</option>
+          </select>
+        </div>
+
+        <!-- Most Liked -->
+        <div class="filter-block mb-4">
+          <div class="custom-check">
+            <input
+              type="checkbox"
+              id="mostLiked"
+              (change)="onMostLikedChange($event)"
+            />
+            <label for="mostLiked">Most Liked</label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Product Grid -->
+    <section class="col-md-9">
+      <h2 class="section-title mb-4">Latest Products</h2>
+      <div class="row g-4">
+        <div class="col-md-4" *ngFor="let product of filteredProducts">
+          <div class="product-card cursor-pointer">
+
+            <!-- Like Heart Icon -->
+            <svg
+              (click)="toggleLike(product); $event.stopPropagation()"
+              class="like-icon"
+              width="24" height="24"
+              [ngClass]="{ 'liked': isProductLiked(product) }"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              role="button"
+              aria-label="Like product"
+              tabindex="0"
+            >
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                       2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+                       C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5
+                       c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+
+            <!-- Product Image -->
+            <div class="product-img-wrap" [routerLink]="['/product', product._id]">
+              <img
+                [src]="product.images[0]"
+                class="product-img img-fluid rounded"
+                alt="{{ product.name }}"
+                *ngIf="product.images.length"
+              />
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info" [routerLink]="['/product', product._id]">
+              <h5>{{ product.name }}</h5>
+              <p class="description text-truncate">{{ product.description }}</p>
+
+              <!-- Price & Discount -->
+              <div class="price-row mb-2">
+                <span *ngIf="product.discount > 0" class="discount-badge bg-danger text-white px-2 rounded">
+                  -{{ product.discount }}%
+                </span>
+                <span class="final-price fw-bold ms-2">
+                  ₹{{ getDiscountedPrice(product) | number: '1.2-2' }}
+                </span>
+              </div>
+
+              <div class="stock-row mb-3">
+                <del class="original-price me-2">₹{{ product.price }}</del>
+                <span
+                  [ngClass]="{
+                    'text-success': product.stock > 0,
+                    'text-danger': product.stock === 0
+                  }"
+                >
+                  {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+                </span>
+              </div>
+
+              <!-- Add to Cart -->
+              <button
+                class="btn btn-warning w-100"
+                [disabled]="product.stock === 0"
+                (click)="addToCart(product); $event.stopPropagation()"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

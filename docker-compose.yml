@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./zapbuy-backend
+    container_name: zapbuy_nodejs
+    ports:
+      - "8000:8000"
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongo:27017/zapbuy
+    depends_on:
+      - mongo
+    volumes:
+      - ./zapbuy-backend:/usr/src/app
+      - /usr/src/app/node_modules
+    restart: unless-stopped
+
+  frontend:
+    build: ./zapbuy-frontend
+    container_name: zapbuy_angular
+    ports:
+      - "4200:80"
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  mongo:
+    image: mongo:6.0
+    container_name: zapbuy_mongodb
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_DATABASE: zapbuy
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

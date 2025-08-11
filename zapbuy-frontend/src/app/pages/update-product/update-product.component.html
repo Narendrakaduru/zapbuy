@@ -1,0 +1,62 @@
+<!-- src/app/pages/update-product/update-product.component.html -->
+<div class="product-form-wrapper">
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct()" class="product-form-card" enctype="multipart/form-data">
+
+    <h2 class="form-title">Update Product</h2>
+
+    <!-- Product Name -->
+    <div class="form-group">
+      <label class="form-label">Product Name</label>
+      <input type="text" formControlName="name" class="form-control" placeholder="e.g. iPhone 15" />
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label class="form-label">Description</label>
+      <textarea formControlName="description" rows="3" class="form-control" placeholder="Short description..."></textarea>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label class="form-label">Price (₹)</label>
+      <input type="number" formControlName="price" class="form-control" placeholder="Price in ₹" />
+    </div>
+
+    <!-- Category -->
+    <div class="form-group">
+      <label class="form-label">Category</label>
+      <ng-select
+        [items]="categories"
+        [addTag]="true"
+        [searchable]="true"
+        [clearable]="true"
+        formControlName="category"
+        class="custom-ng-select">
+      </ng-select>
+    </div>
+
+    <!-- Images -->
+    <div class="form-group">
+      <label for="images" class="form-label">Product Images</label>
+      <input class="form-control" type="file" (change)="onFileChange($event)" id="images" multiple>
+    </div>
+
+    <!-- Discount -->
+    <div class="form-group">
+      <label class="form-label">Discount (%)</label>
+      <input type="number" formControlName="discount" class="form-control" placeholder="e.g. 10" />
+    </div>
+
+    <!-- Stock -->
+    <div class="form-group">
+      <label class="form-label">Stock</label>
+      <input type="number" formControlName="stock" class="form-control" placeholder="e.g. 50" />
+    </div>
+
+    <!-- Submit Button -->
+    <button class="btn-submit" type="submit" [disabled]="!productForm.valid">
+      Update Product
+    </button>
+
+  </form>
+</div>

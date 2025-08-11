@@ -1,0 +1,31 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title class="cart-title">Your Cart</h2>
+
+  <mat-dialog-content class="dialog-content">
+    <div *ngIf="cart.items?.length > 0; else empty">
+      <div class="cart-items-container">
+        <app-cart-item
+          *ngFor="let item of cart.items"
+          [item]="item"
+          (quantityChanged)="updateQuantity(item.product._id, $event)"
+          (remove)="removeItem(item.product._id)">
+        </app-cart-item>
+      </div>
+    </div>
+
+    <ng-template #empty>
+      <p class="empty-text">Your cart is empty.</p>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="cart-footer" align="end">
+    <div class="total-cost">Total: ₹{{ getTotalCost() }}</div>
+    <div class="cart-actions">
+      <button class="btn btn-clear" (click)="clearCart()">Clear Cart</button>
+      <button class="btn btn-order" (click)="placeOrder()">Place Order</button>
+    </div>
+    <button class="btn btn-close" (click)="close()">
+      <i class="bi bi-x-square"></i>
+    </button>
+  </mat-dialog-actions>
+</div>

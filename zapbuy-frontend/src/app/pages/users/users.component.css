@@ -1,0 +1,158 @@
+.user-wrapper {
+  background: linear-gradient(135deg, #232526, #414345);
+  color: #f8f9fa;
+}
+
+/* === Search Container === */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  border-radius: 50px;
+}
+
+/* Search Input */
+.search-input {
+  padding: 12px 18px;
+  width: 280px;
+  border: 2px solid #ffc107;
+  border-radius: 50px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: #bfa64a;
+}
+
+.search-input:focus {
+  border-color: #e0ac00;
+  box-shadow: 0 0 8px #e0ac00aa;
+}
+
+/* Search and Reset Buttons */
+.search-btn, .reset-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  user-select: none;
+}
+
+/* Search Button Gold */
+.search-btn {
+  background: linear-gradient(135deg, #ffc107, #ffdd57);
+  color: #222;
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.6);
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #ffdd57, #ffc107);
+  box-shadow: 0 6px 16px rgba(255, 193, 7, 0.9);
+}
+
+/* Reset Button Soft Gray */
+.reset-btn {
+  background: #f0f0f0;
+  color: #666;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+/* User Table */
+.user-table {
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.table-title {
+  color: #ffc107;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.custom-table {
+  width: 100%;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.custom-table thead th {
+  background: #333;
+  color: #ffc107;
+  padding: 12px;
+  border-bottom: 2px solid #444;
+  user-select: none;
+}
+
+.custom-table tbody td {
+  padding: 12px;
+  color: #d4c67a;
+  vertical-align: middle;
+}
+
+.custom-table tbody tr:hover {
+  background-color: rgba(255, 193, 7, 0.1);
+  cursor: pointer;
+}
+
+/* Button Styles */
+.btn-outline-warning {
+  border-color: #ffc107;
+  color: #ffc107;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ffc107;
+  color: #222;
+  box-shadow: 0 0 8px #e0ac00;
+}
+
+.btn-outline-danger {
+  border-color: #dc3545;
+  color: #dc3545;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+  box-shadow: 0 0 8px #b3333a;
+}
+
+/* Loading and Error text */
+.text-warning {
+  color: #ffc107;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.text-danger {
+  color: #dc3545;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.text-muted {
+  color: #7a6b00;
+  font-weight: 600;
+  text-align: center;
+  margin: 20px 0;
+}
